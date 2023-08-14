@@ -1,22 +1,22 @@
 from rest_framework import generics, mixins
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Discount
+from .serializers import DiscountSerializer
 
 """
-    1.get product list
-    2.get a product
-    3.create a product
+    1.get Discount list
+    2.get a Discount
+    3.create a Discount
 """
 
-class ProductMixinView(
+class DiscountMixinView(
     mixins.CreateModelMixin,
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
     generics.GenericAPIView
     ):
 
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    queryset = Discount.objects.all()
+    serializer_class = DiscountSerializer
     lookup_field = 'pk'
     
     def get(self, request, *args, **kwargs):
@@ -31,21 +31,20 @@ class ProductMixinView(
     
     def perform_create(self, serializer):
         # serializer.save(user=self.request.user)
-        print(serializer.validated_data)
         content = serializer.validated_data.get("content") or None
         if content == None:
             content = 'This is a default content'
         serializer.save(content=content)
     
-product_mixin_view = ProductMixinView.as_view()
+discount_mixin_view = DiscountMixinView.as_view()
 
 """
-    update a product
+    update a Discount
 """
-class ProductUpdateAPIView(
+class DiscountUpdateAPIView(
     generics.UpdateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    queryset = Discount.objects.all()
+    serializer_class = DiscountSerializer
     lookup_field = 'pk'
 
     def perform_update(self, serializer):
@@ -53,19 +52,19 @@ class ProductUpdateAPIView(
         if not instance.title:
             instance.title = instance.content
 
-product_update_api_view = ProductUpdateAPIView.as_view()
+discount_update_api_view = DiscountUpdateAPIView.as_view()
 
 
 """
-    delete a product
+    delete a Discount
 """
-class ProductDeleteAPIView(
+class DiscountDeleteAPIView(
     generics.DestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    queryset = Discount.objects.all()
+    serializer_class = DiscountSerializer
     lookup_field = 'pk'
 
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
 
-product_delete_api_view = ProductDeleteAPIView.as_view()
+discount_delete_api_view = DiscountDeleteAPIView.as_view()

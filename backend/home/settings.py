@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-$c*r42v!a*-7zi-hisjpg7(f_%z0(t858moe@c0th38f9^6qnd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["babylon.pythonanywhere.com", "127.0.0.1"]
 
 # setting for firebase
 
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
-    'products',
+    'discounts',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +131,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -146,6 +148,6 @@ REST_FRAMEWORK = {
         'api.authentication.FirebaseAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ],
 }
