@@ -1,2 +1,3 @@
 venv/
 backend/credentials.json
+backend/home/settings.py
