@@ -1,6 +1,6 @@
 from django.urls import path, include
 
 urlpatterns = [
-    path('discounts/', include('collections.discounts.urls')),
-    path('users/', include('collections.users.urls'))
+    path('discounts/', include('api.discounts.urls')),
+    path('users/', include('api.users.urls'))
 ]
