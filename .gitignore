@@ -1,3 +1,4 @@
 venv/
 backend/credentials.json
 backend/config/settings.py
+**/.DS_Store

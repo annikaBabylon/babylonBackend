@@ -5,6 +5,7 @@ class DiscountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discount
         fields = [
+            'pk',
             'title',
             'content',
             'percentage',

@@ -7,9 +7,10 @@ import firebase_admin.auth as auth
 class FirebaseAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
 
-        token = request.headers.get('Authorization').split(" ").pop()
+        token = request.headers.get('Authorization')
         if not token:
             return None
+        token = token.split(" ").pop()
 
         try:
             decoded_token = auth.verify_id_token(token)
