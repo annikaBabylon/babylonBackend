@@ -1,4 +1,3 @@
-.venv/
 venv/
 backend/credentials.json
 backend/config/settings.py
